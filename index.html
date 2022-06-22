@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function computerPlay() {
+            let rps = ["ROCK", "PAPER", "SCISSOR"];
+            let num = Math.floor(Math.random() * 3)
+            return (rps[num])
+        }
+        let p = 0;
+        let c = 0
+
+        // console.log(playerSelection.toUpperCase())
+        function round(playerSelection, computerSelection) {
+            playerSelection = prompt()
+            computerSelection = computerPlay();
+
+            //console.log(playerSelection.toUpperCase() + " " + computerSelection)
+            if ((playerSelection.toUpperCase() === "SCISSOR") && (computerSelection === "SCISSOR")) {
+                console.log("DRAW")
+            } else if ((playerSelection.toUpperCase() === "SCISSOR") && (computerSelection === "ROCK")) {
+                console.log("You lose! Rock beats scissor!")
+                c++
+            } else if ((playerSelection.toUpperCase() === "SCISSOR") && (computerSelection === "PAPER")) {
+                console.log("You win! Scissor beats Paper!")
+                p++
+            } else if ((playerSelection.toUpperCase() === "ROCK") && (computerSelection === "ROCK")) {
+                console.log("DRAW")
+            } else if ((playerSelection.toUpperCase() === "ROCK") && (computerSelection === "PAPER")) {
+                console.log("You lose! Paper beats Rock!")
+                c++
+            } else if ((playerSelection.toUpperCase() === "ROCK") && (computerSelection === "SCISSOR")) {
+                console.log("You win! rock beats scissor!")
+                p++
+            } else if ((playerSelection.toUpperCase() === "PAPER") && (computerSelection === "PAPER")) {
+                console.log("DRAW")
+            } else if ((playerSelection.toUpperCase() === "PAPER") && (computerSelection === "SCISSOR")) {
+                console.log("You lose! Scissor beats Paper!")
+                c++
+            } else if ((playerSelection.toUpperCase() === "PAPER") && (computerSelection === "ROCK")) {
+                console.log("You win! Paper beats Rock!")
+                p++
+            }
+        }
+
+        function score() {
+            if (p > c) {
+                return ("You Win")
+            } else {
+                return ("You Lose")
+            }
+        }
+
+        function game() {
+            for (let i = 0; i < 5; i++) {
+                round()
+            }
+            console.log(score())
+
+        }
+
+        game();
+    </script>
+</body>
+
+</html>
