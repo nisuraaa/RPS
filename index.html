@@ -6,21 +6,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            column-gap: 10px;
+        }
+
+        .buttons>button {
+            min-width: 90px;
+            border-radius: 10px;
+            border: 0px;
+            background-color: lightblue;
+            padding: 10px 15px;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
+        <div class="buttons">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissor">Scissor</button>
+        </div>
+        <div class="result"></div>
+    </div>
+
+
     <script type="text/javascript">
+
+        const rock = document.getElementById("rock");
+        const paper = document.getElementById("paper");
+        const scissor = document.getElementById("scissor");
+
+        rock.addEventListener('click', rockfunc);
+        paper.addEventListener('click', paperfunc);
+        scissor.addEventListener('click', scissorfunc);
+
         function computerPlay() {
             let rps = ["ROCK", "PAPER", "SCISSOR"];
             let num = Math.floor(Math.random() * 3)
             return (rps[num])
         }
+
+        function rockfunc() {
+            round('rock')
+        }
+
+        function paperfunc() {
+            round('paper')
+        }
+        function scissorfunc() {
+            round('scissor')
+        }
+
         let p = 0;
         let c = 0
 
         // console.log(playerSelection.toUpperCase())
-        function round(playerSelection, computerSelection) {
-            playerSelection = prompt()
+        function round(playerSelection) {
             computerSelection = computerPlay();
 
             //console.log(playerSelection.toUpperCase() + " " + computerSelection)
@@ -49,10 +101,21 @@
                 console.log("You win! Paper beats Rock!")
                 p++
             }
+            console.log('p' + p);
+            console.log('c' + c);
+            if (p === 5 || c === 5) {
+                document.getElementsByClassName('result')[0].innerHTML = score();
+
+                rock.removeEventListener('click', rockfunc);
+                paper.removeEventListener('click', paperfunc);
+                scissor.removeEventListener('click', scissorfunc);
+
+
+            }
         }
 
         function score() {
-            if (p > c) {
+            if (p === 5) {
                 return ("You Win")
             } else {
                 return ("You Lose")
@@ -62,12 +125,13 @@
         function game() {
             for (let i = 0; i < 5; i++) {
                 round()
+
             }
             console.log(score())
 
         }
 
-        game();
+        // game();
     </script>
 </body>
 
